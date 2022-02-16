@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	engine, _ := geeorm.NewEngine("sqlite3", "gee.db")
+	engine, _ := geeorm.NewEngine("sqlite3", "~/mydata/gee.db")
 	defer engine.Close()
 
 	s := engine.NewSession()

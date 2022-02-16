@@ -20,7 +20,7 @@ func New(db *sql.DB) *Session {
 	return &Session{db: db}
 }
 
-//每次执行数据库操作后都将清空sql以及占位符对应的数据，保证同一个tcp链接可以复用
+//每次执行数据库操作后都将清空sql以及占位符对应的数据，保证同一个会话可以复用
 func (s *Session) Clear() {
 	s.sql.Reset()
 	s.sqlVars = nil
