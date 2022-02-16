@@ -28,6 +28,8 @@ func (s *sqlite3) DataTypeof(typ reflect.Value) string {
 		return "bigint"
 	case reflect.Float32, reflect.Float64:
 		return "real"
+	case reflect.String:
+		return "text"
 	case reflect.Array, reflect.Slice:
 		return "blob"
 	case reflect.Struct:

@@ -5,19 +5,26 @@
 package session
 
 import (
+	"geeorm/schema"
 	"database/sql"
+	"geeorm/dialect"
 	"geeorm/log"
 	"strings"
 )
 
 type Session struct {
 	db *sql.DB
+	dialect dialect.Dialect
+	refTable *schema.Schema
 	sql strings.Builder
 	sqlVars []interface{}
 }
 
-func New(db *sql.DB) *Session {
-	return &Session{db: db}
+func New(db *sql.DB, dia dialect.Dialect) *Session {
+	return &Session{
+		db: db,
+		dialect: dia,
+	}
 }
 
 //每次执行数据库操作后都将清空sql以及占位符对应的数据，保证同一个会话可以复用
